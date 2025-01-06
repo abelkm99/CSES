@@ -17,7 +17,7 @@ typedef pair<int, int> pii;
 typedef vector<int> vi;
 
 using pr = pair<int, int>;
-using pq = vector<pr>;
+using pq = priority_queue<pr>;
 
 void solve() {
   int n;
@@ -41,42 +41,35 @@ void solve() {
         continue;
       }
       int res = pre_calc(v, u);
-      contribution[u].push_back({res, v});
-      push_heap(all(contribution[u]));
+      contribution[u].push({res, v});
     }
-    return (contribution[u].size() > 0 ? contribution[0][0].first : 0) + 1;
+    return (contribution[u].size() > 0 ? contribution[u].top().first : 0) + 1;
   };
   pre_calc(0, -1);
 
   vector<int> ans(n, 0);
 
-  dbg(contribution);
-  dbg(string(20, '-'));
 
   function<void(int, int)> dfs = [&](int u, int parent) -> void {
-    ans[u] = contribution[u].size() ? contribution[u][0].first : 0;
-    dbgm(u, ans[u], contribution[u]);
+    ans[u] = contribution[u].size() ? contribution[u].top().first : 0;
 
     for (int v : graph[u]) {
       if (v == parent)
         continue;
 
-      pq u_contrib = contribution[u];
-      pq v_contrib = contribution[v];
-
-      if (contribution[u].size() and contribution[u][0].second == v) {
-        pop_heap(all(contribution[u]));
-        contribution[u].pop_back();
+      pr back = {-1, -1};
+      if (contribution[u].size() and contribution[u].top().second == v) {
+        back = contribution[u].top();
+        contribution[u].pop();
       }
-      if (contribution[u].size()) {
-        contribution[v].push_back({contribution[u][0].first + 1, u});
-        push_heap(all(contribution[v]));
-      }
+      contribution[v].push(
+          {(contribution[u].size() ? contribution[u].top().first : 0) + 1, u});
 
       dfs(v, u);
       // now reset everything to where it was before
-      contribution[u] = u_contrib;
-      contribution[v] = v_contrib;
+      if (back.first != -1) {
+        contribution[u].push(back);
+      }
     }
   };
   dfs(0, -1);
@@ -91,7 +84,7 @@ int main() {
   cin.tie(0);
   cout.tie(0);
 #ifdef LOCAL
-  freopen("Error.txt", "w", stderr);
+  // freopen("Error.txt", "w", stderr);
   freopen("input.txt", "r", stdin);
   clock_t z = clock();
 #endif
