@@ -5,3 +5,13 @@
  - [Tree Diameter](https://cses.fi/problemset/task/1131/)
  - [Tree Distances I](https://cses.fi/problemset/task/1132/)
  - [Tree Distances II](https://cses.fi/problemset/task/1133/)
+ - [Company Queries I](https://cses.fi/problemset/task/1687/)
+    - The basic idea behing binary lifting.
+        - assumption 1) the tree is connection in a way `1 -> 2 -> 3 -> 4 -> ... -> n`.
+        ```txt
+        pre-compute that table
+         for if i want to finx for any x that is power of 2 (1, 2, 4, 8, 16, 32)
+         we can caluclate tha answer for them in a way that starts from  ( 1+1, 2 + 2, 4 + 4, 8 + 8)
+         for n[x][i] = n[x][i-1] + [n[x][i-1]][i-1]
+         ```
+
