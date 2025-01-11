@@ -14,4 +14,6 @@
          we can caluclate tha answer for them in a way that starts from  ( 1+1, 2 + 2, 4 + 4, 8 + 8)
          for n[x][i] = n[x][i-1] + [n[x][i-1]][i-1]
          ```
-
+ - [Company Queries II](https://cses.fi/problemset/task/1688/)
+    - make the two nodes equal using binary lifting and finally find their parent using binary lifting.
+    - we can do this by checking their greatest parent `i` for both nodes, if they are not equal it means i can make the transition u = table[u][i] and v = table[u][i]
