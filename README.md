@@ -17,3 +17,9 @@
  - [Company Queries II](https://cses.fi/problemset/task/1688/)
     - make the two nodes equal using binary lifting and finally find their parent using binary lifting.
     - we can do this by checking their greatest parent `i` for both nodes, if they are not equal it means i can make the transition u = table[u][i] and v = table[u][i]
+ - [Distance Queries](https://cses.fi/problemset/task/1135/)
+    - calculate LCA if they are at the same path it's just different between the two nodes depth.
+    - if there is another node that is their LCA it is the distance from a to LCA node + the distance from LCA node to b.
+    - keep that in mind populate the LCA iterating parent's wise it means outet loop is going to be to parent, grand_parent ... and the inner loop is the node.
+    - this way we can avoid dependencies
+
