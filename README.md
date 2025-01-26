@@ -21,5 +21,5 @@
     - calculate LCA if they are at the same path it's just different between the two nodes depth.
     - if there is another node that is their LCA it is the distance from a to LCA node + the distance from LCA node to b.
     - keep that in mind populate the LCA iterating parent's wise it means outet loop is going to be to parent, grand_parent ... and the inner loop is the node.
-    - this way we can avoid dependencies.
+    - this way we can avoid dependencies
 
