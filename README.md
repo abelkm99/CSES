@@ -12,7 +12,7 @@
         pre-compute that table
          for if i want to finx for any x that is power of 2 (1, 2, 4, 8, 16, 32)
          we can caluclate tha answer for them in a way that starts from  ( 1+1, 2 + 2, 4 + 4, 8 + 8)
-         for n[x][i] = n[x][i-1] + [n[x][i-1]][i-1]
+         for n[x][i] = n[x][i-1] + [n[x][i-1]][i-1].
          ```
  - [Company Queries II](https://cses.fi/problemset/task/1688/)
     - make the two nodes equal using binary lifting and finally find their parent using binary lifting.
